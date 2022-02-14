@@ -4,9 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
@@ -15,6 +13,7 @@ import coil.load
 import com.example.materialdesignlesson.R
 import com.example.materialdesignlesson.databinding.FragmentMainBinding
 import com.example.materialdesignlesson.view.BaseFragment
+import com.example.materialdesignlesson.view.MainActivity
 import com.example.materialdesignlesson.viewmodel.PODData
 import com.example.materialdesignlesson.viewmodel.PODViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -22,7 +21,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
 
-
+    //инициализация viewModel
     private val viewModel: PODViewModel by lazy {
         ViewModelProvider(this).get(PODViewModel::class.java)
     }
@@ -35,9 +34,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             renderData(it)
         })
         viewModel.sendRequest()
-
+        //активация слушателя по нажатию кнопки (W)
         binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
+                //спарсили ссылку на сайт Wikipedia
                 data =
                     Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
             })
@@ -66,8 +66,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 Log.d("log", "slide $slideOffset")
             }
-
         })
+        //связка ActionBar Activity с bottomAppBar
+        (requireActivity() as MainActivity).setSupportActionBar(binding.bottomAppBar)
+        setHasOptionsMenu(true)
     }
 
     private fun renderData(podData: PODData) {
@@ -85,6 +87,29 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                 }
             }
         }
+    }
+
+    //создание menu_bottom_bar
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_bottom_bar, menu)
+    }
+
+    //создание слушателей на кнопки меню
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.app_bar_fav -> {
+                myToast("нажатие кнопки app_bar_fav")
+            }
+            R.id.app_bar_settings -> {
+                myToast("нажатие кнопки settings")
+            }
+            //для поиска кнопки бургер используется android.R.id.home
+            android.R.id.home -> {
+                myToast("нажатие кнопки бургер")
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     companion object {
