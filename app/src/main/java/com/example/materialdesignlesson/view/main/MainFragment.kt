@@ -132,7 +132,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                 myToast("нажатие кнопки app_bar_fav")
             }
             R.id.app_bar_settings -> {
-                myToast("нажатие кнопки settings")
+                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.mainContainer, ChipsFragment.newInstance()).commit()
             }
             //для поиска кнопки бургер используется android.R.id.home
             android.R.id.home -> {
