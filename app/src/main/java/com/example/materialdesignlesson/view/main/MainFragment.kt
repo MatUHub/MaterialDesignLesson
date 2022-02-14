@@ -1,5 +1,7 @@
 package com.example.materialdesignlesson.view.main
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +29,12 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         viewModel.getData().observe(viewLifecycleOwner, Observer { renderData(it)
         })
         viewModel.sendRequest()
+
+        binding.inputLayout.setEndIconOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
+                })
+        }
     }
 
     fun renderData(podData: PODData) {
@@ -39,6 +47,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             }
             is PODData.Success -> {
                 binding.imageView.load(podData.serverResponse.url){
+                    placeholder(R.drawable.ic_no_photo_vector)
 
                 }
             }
