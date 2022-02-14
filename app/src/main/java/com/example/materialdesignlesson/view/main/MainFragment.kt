@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
@@ -16,6 +17,7 @@ import com.example.materialdesignlesson.view.BaseFragment
 import com.example.materialdesignlesson.view.MainActivity
 import com.example.materialdesignlesson.viewmodel.PODData
 import com.example.materialdesignlesson.viewmodel.PODViewModel
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 
@@ -47,7 +49,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
         // открытие bottomSheet на половину
         //bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
-
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
         //фиксированные состояния bottomSheet
         bottomSheetBehavior.addBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
@@ -65,20 +67,48 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             //указывает уровень открытия bottomSheet через slideOffset
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 Log.d("log", "slide $slideOffset")
+                //задание условия для состояния bottomSheet при котором он не уходит за нижню навигацию (трудно достать потом из-за bottomNavigation)
+                if (slideOffset < 0.5) bottomSheetBehavior.state =
+                    BottomSheetBehavior.STATE_HALF_EXPANDED
             }
         })
         //связка ActionBar Activity с bottomAppBar
         (requireActivity() as MainActivity).setSupportActionBar(binding.bottomAppBar)
         setHasOptionsMenu(true)
+
+        binding.fab.setOnClickListener{
+           if(isMain){
+               //обнуляем ссылку на бургер и он исчезает
+               binding.bottomAppBar.navigationIcon = null
+               //перемещаем fob в конец bottomNavigation
+               binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+               //изменение иконки на стрелку
+               binding.fab.setImageResource(R.drawable.ic_back_fab)
+               //изменение иконки
+               binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
+
+           } else {
+               //создаем кнопку бургер
+               binding.bottomAppBar.navigationIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_hamburger_menu_bottom_bar)
+               //перемещаем fob в середину bottomNavigation
+               binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+               //изменение иконки на плюс
+               binding.fab.setImageResource(R.drawable.ic_plus_fab)
+               //установка меню
+               binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
+           }
+            isMain = !isMain
+        }
     }
+    var isMain = true
 
     private fun renderData(podData: PODData) {
         when (podData) {
             is PODData.Error -> {
-
+                myToast("Ошибка получения данных")
             }
             is PODData.Loading -> {
-
+                myToast("Загрузка данных")
             }
             is PODData.Success -> {
                 binding.imageView.load(podData.serverResponse.url) {
