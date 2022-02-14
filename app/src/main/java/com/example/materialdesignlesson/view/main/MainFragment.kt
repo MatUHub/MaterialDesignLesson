@@ -106,7 +106,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             }
             //для поиска кнопки бургер используется android.R.id.home
             android.R.id.home -> {
-                myToast("нажатие кнопки бургер")
+                BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager, "a")
             }
         }
         return super.onOptionsItemSelected(item)
