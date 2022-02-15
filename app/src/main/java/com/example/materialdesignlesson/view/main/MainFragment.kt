@@ -111,6 +111,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                 myToast("Загрузка данных")
             }
             is PODData.Success -> {
+                //добавление заголовка и описания картинки с сайта nasa
+               binding.included.bottomSheetDescriptionHeader.text = podData.serverResponse.title
+               binding.included.bottomSheetDescription.text = podData.serverResponse.explanation
+
                 binding.imageView.load(podData.serverResponse.url) {
                     placeholder(R.drawable.ic_no_photo_vector)
 
