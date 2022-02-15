@@ -1,5 +1,8 @@
 package com.example.materialdesignlesson.viewmodel
 
+import android.content.Context
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -32,15 +35,17 @@ class PODViewModel(private val liveData: MutableLiveData<PODData> = MutableLiveD
                         }
 
                     } else{
-                        //TODO Вывести ошибку получения данных
+                        response.body()?.let {
+                            liveData.postValue(PODData.Error(it))}
                     }
 
                 }
 
                 override fun onFailure(call: Call<PODServerResponse>, t: Throwable) {
-                    //TODO("Not yet implemented")
+                    Log.d("Error", "Server not found")
                 }
             }
         )
     }
+
 }
