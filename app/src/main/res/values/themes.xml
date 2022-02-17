@@ -1,19 +1,70 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MaterialDesignLesson" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:navigationBarColor">@color/red_500</item>
-        <item name="colorPrimary">@color/red_600</item>
+
+    <style name="myThemeIndigo" parent="MyBaseTheme">
+        <item name="myColor">@color/indigo_600</item>
+
+        <item name="color_100">@color/indigo_100</item>
+        <item name="color_200">@color/indigo_200</item>
+        <item name="color_300">@color/indigo_300</item>
+        <item name="color_400">@color/indigo_400</item>
+        <item name="color_500">@color/indigo_500</item>
+        <item name="color_600">@color/indigo_600</item>
+        <item name="color_700">@color/indigo_700</item>
+        <item name="color_800">@color/indigo_800</item>
+        <item name="color_900">@color/indigo_900</item>
+    </style>
+
+    <style name="myThemeOrange" parent="MyBaseTheme">
+        <item name="myColor">@color/orange_600</item>
+
+        <item name="color_100">@color/orange_100</item>
+        <item name="color_200">@color/orange_200</item>
+        <item name="color_300">@color/orange_300</item>
+        <item name="color_400">@color/orange_400</item>
+        <item name="color_500">@color/orange_500</item>
+        <item name="color_600">@color/orange_600</item>
+        <item name="color_700">@color/orange_700</item>
+        <item name="color_800">@color/orange_800</item>
+        <item name="color_900">@color/orange_900</item>
+    </style>
+
+    <style name="myThemeLightGreen" parent="MyBaseTheme">
+        <item name="myColor">@color/light_green_600</item>
+
+        <item name="color_100">@color/light_green_100</item>
+        <item name="color_200">@color/light_green_200</item>
+        <item name="color_300">@color/light_green_300</item>
+        <item name="color_400">@color/light_green_400</item>
+        <item name="color_500">@color/light_green_500</item>
+        <item name="color_600">@color/light_green_600</item>
+        <item name="color_700">@color/light_green_700</item>
+        <item name="color_800">@color/light_green_800</item>
+        <item name="color_900">@color/light_green_900</item>
+    </style>
+
+    <style name="MyBaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:navigationBarColor">?myColor</item>
+        <item name="colorPrimary">?color_600</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryContainer">@color/red_100</item>
-        <item name="colorOnPrimaryContainer">@color/red_900</item>
-        <item name="colorPrimaryInverse">@color/red_200</item>
-        <item name="colorSecondary">@color/red_600</item>
+        <item name="colorPrimaryContainer">?color_100</item>
+        <item name="colorOnPrimaryContainer">?color_900</item>
+        <item name="colorPrimaryInverse">?color_200</item>
+        <item name="colorSecondary">?color_600</item>
         <item name="colorOnSecondary">@color/white</item>
-        <item name="colorSecondaryContainer">@color/red_100</item>
-        <item name="colorOnSecondaryContainer">@color/red_900</item>
-        <item name="colorTertiary">@color/red_600</item>
+        <item name="colorSecondaryContainer">?color_100</item>
+        <item name="colorOnSecondaryContainer">?color_900</item>
+        <item name="colorTertiary">?color_600</item>
         <item name="colorOnTertiary">@color/white</item>
-        <item name="colorTertiaryContainer">@color/red_100</item>
-        <item name="colorOnTertiaryContainer">@color/red_900</item>
+        <item name="colorTertiaryContainer">?color_100</item>
+        <item name="colorOnTertiaryContainer">?color_900</item>
+        <item name="android:statusBarColor">?myColor</item>
+        <item name="colorSurface">?myColor</item>
+        <item name="chipStyle">@style/myChipStyle</item>
+        <item name="backgroundTint">?color_200</item>
+    </style>
+
+    <style name="myChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/red_600</item>
     </style>
 </resources>

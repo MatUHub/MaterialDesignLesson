@@ -15,6 +15,7 @@ import com.example.materialdesignlesson.R
 import com.example.materialdesignlesson.databinding.FragmentMainBinding
 import com.example.materialdesignlesson.view.BaseFragment
 import com.example.materialdesignlesson.view.MainActivity
+import com.example.materialdesignlesson.view.chips.ChipsFragment
 import com.example.materialdesignlesson.viewmodel.PODData
 import com.example.materialdesignlesson.viewmodel.PODViewModel
 import com.google.android.material.bottomappbar.BottomAppBar
@@ -136,7 +137,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                 myToast("нажатие кнопки app_bar_fav")
             }
             R.id.app_bar_settings -> {
-                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.mainContainer, ChipsFragment.newInstance()).commit()
+                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.mainContainer, ChipsFragment.newInstance()).addToBackStack("").commit()
             }
             //для поиска кнопки бургер используется android.R.id.home
             android.R.id.home -> {

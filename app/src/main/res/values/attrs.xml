@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="myColor" format="color"/>
+
+    <attr name="color_100" format="color"/>
+    <attr name="color_200" format="color"/>
+    <attr name="color_300" format="color"/>
+    <attr name="color_400" format="color"/>
+    <attr name="color_500" format="color"/>
+    <attr name="color_600" format="color"/>
+    <attr name="color_700" format="color"/>
+    <attr name="color_800" format="color"/>
+    <attr name="color_900" format="color"/>
+</resources>

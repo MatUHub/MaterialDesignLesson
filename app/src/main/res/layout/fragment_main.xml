@@ -56,7 +56,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:backgroundTint="@color/red_900"
         app:fabAlignmentMode="center"
         app:navigationIcon="@drawable/ic_hamburger_menu_bottom_bar" />
 
@@ -65,7 +64,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_anchor="@id/bottomAppBar"
-        app:backgroundTint="@color/black"
         app:srcCompat="@drawable/ic_plus_fab"
         app:tint="#FFFFFF" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,4 +1,4 @@
-package com.example.materialdesignlesson.view.main
+package com.example.materialdesignlesson.view.chips
 
 import android.os.Bundle
 import android.view.View
