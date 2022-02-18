@@ -47,7 +47,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         }
         //задание настроек для bottomSheet
         bottomSheetBehavior = BottomSheetBehavior.from(binding.included.bottomSheetContainer)
-
         // открытие bottomSheet на половину
         //bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED

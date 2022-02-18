@@ -2,73 +2,74 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
-    <com.google.android.material.chip.Chip
-        android:text="@string/favourite"
-        style="@style/Widget.MaterialComponents.Chip.Choice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chipEntry"
-        android:text="@string/favourite"
-        style="@style/Widget.MaterialComponents.Chip.Entry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <com.google.android.material.chip.Chip
-        android:text="@string/favourite"
-        style="@style/Widget.MaterialComponents.Chip.Action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <com.google.android.material.chip.Chip
-        android:text="@string/favourite"
-        style="@style/Widget.MaterialComponents.Chip.Filter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-</LinearLayout>
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
-            android:text="@string/favourite"
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/favourite" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipEntry"
+            style="@style/Widget.MaterialComponents.Chip.Entry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/favourite" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/favourite" />
+
+        <com.google.android.material.chip.Chip
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/favourite" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/favourite"
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
-                android:text="@string/favourite"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@string/favourite" />
 
             <com.google.android.material.chip.Chip
-                android:text="@string/favourite"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@string/favourite" />
 
             <com.google.android.material.chip.Chip
-                android:text="@string/favourite"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@string/favourite" />
 
             <com.google.android.material.chip.Chip
-                android:text="@string/favourite"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@string/favourite" />
 
         </com.google.android.material.chip.ChipGroup>
     </LinearLayout>
@@ -118,19 +119,20 @@
         android:id="@+id/themeButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Theme 1"/>
+        android:includeFontPadding="true"
+        android:text="Theme 1" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/themeButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Theme 2"/>
+        android:text="Theme 2" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/themeButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Theme 3"/>
+        android:text="Theme 3" />
 
 
 </LinearLayout>
