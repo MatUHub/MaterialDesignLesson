@@ -62,9 +62,14 @@
         <item name="colorSurface">?myColor</item>
         <item name="chipStyle">@style/myChipStyle</item>
         <item name="backgroundTint">?color_200</item>
+        <item name="tabStyle">@style/myTabStyle</item>
     </style>
 
     <style name="myChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/red_600</item>
+    </style>
+
+    <style name="myTabStyle" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:background">@color/white</item>
     </style>
 </resources>
