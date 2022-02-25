@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/PicOfDay"
+        android:icon="@drawable/ic_pod"
+        android:title="POD" />
+    <item
+        android:id="@+id/bottomViewEarth"
+        android:icon="@drawable/ic_earth"
+        android:title="Earth" />
+    <item
+        android:id="@+id/bottomViewMars"
+        android:icon="@drawable/ic_mars"
+        android:title="Mars" />
+    <item
+        android:id="@+id/bottomViewFavorite"
+        android:icon="@drawable/ic_favourite_menu"
+        android:title="Favorite" />
+    <item
+        android:id="@+id/bottomViewSettings"
+        android:icon="@drawable/ic_settings_menu"
+        android:title="Settings" />
+
+</menu>
