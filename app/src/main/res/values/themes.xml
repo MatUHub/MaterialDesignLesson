@@ -66,6 +66,7 @@
         <item name="tabStyle">@style/myTabStyle</item>
         <item name="materialButtonStyle">@style/myButtonStyle</item>
         <item name="bottomSheetStyle">@style/mySheetStyle</item>
+        <item name="bottomNavigationStyle">?color_600</item>
 
     </style>
 

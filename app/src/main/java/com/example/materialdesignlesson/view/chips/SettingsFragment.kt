@@ -22,16 +22,8 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //реализации слушателя на чипах
-        binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
-            binding.chipGroup.findViewById<Chip>(checkedId)?.let { it ->
-                myToast("${it.text} ${checkedId}")
-            }
-        }
 
-        binding.chipEntry.setOnCloseIconClickListener {
-            myToast("chipEntry icon close")
-        }
+
 
         binding.themeButton1.setOnClickListener {
             setThemeInSheredPref(0)

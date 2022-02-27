@@ -9,7 +9,7 @@
     app:behavior_hideable="false"
     app:behavior_peekHeight="?actionBarSize"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-
+android:layout_marginTop="?actionBarSize"
     >
 
     <View

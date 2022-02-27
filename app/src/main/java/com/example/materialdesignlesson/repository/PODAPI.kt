@@ -10,5 +10,5 @@ interface PODAPI {
     //andpoint в сслыке на ресурс
     @GET("planetary/apod")
     //"api_key" параметр запроса
-    fun getPOD(@Query("api_key") apiKey:String ): Call<PODServerResponse>
+    fun getPOD(@Query("api_key") apiKey:String, @Query("date") date:String ): Call<PODServerResponse>
 }

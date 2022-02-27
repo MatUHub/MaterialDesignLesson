@@ -6,7 +6,7 @@ import com.example.materialdesignlesson.view.main.PODFragment
 
 class ViewPagerAdapter(private val fragmentManager: FragmentManager) :
     FragmentStatePagerAdapter(fragmentManager) {
-    private val fragments = arrayOf(PODFragment(1), PODFragment(2), PODFragment(1))
+    private val fragments = arrayOf(PODFragment(0), PODFragment(1))
     override fun getCount(): Int {
         return fragments.size
     }
@@ -17,7 +17,6 @@ class ViewPagerAdapter(private val fragmentManager: FragmentManager) :
         return when(position){
             0 -> "Today"
             1 -> "Yesterday"
-            2 -> "Before yesterday"
             else -> "null"
         }
     }

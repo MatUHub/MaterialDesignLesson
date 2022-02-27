@@ -39,7 +39,7 @@ class PODFragment (): BaseFragment<FragmentMainBinding>(FragmentMainBinding::inf
         viewModel.getData().observe(viewLifecycleOwner, Observer {
             renderData(it)
         })
-        viewModel.sendRequest()
+        viewModel.sendRequest(0)
         //активация слушателя по нажатию кнопки (W)
         binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
@@ -97,7 +97,7 @@ class PODFragment (): BaseFragment<FragmentMainBinding>(FragmentMainBinding::inf
             }
             is PODData.Success -> {
                 when(dataPOD){
-                    1 -> {  //добавление заголовка и описания картинки с сайта nasa
+                    0 -> {  //добавление заголовка и описания картинки с сайта nasa
                         binding.included.bottomSheetDescriptionHeader.text = podData.serverResponse.title
                         binding.included.bottomSheetDescription.text = podData.serverResponse.explanation
 
@@ -105,20 +105,16 @@ class PODFragment (): BaseFragment<FragmentMainBinding>(FragmentMainBinding::inf
                             placeholder(R.drawable.ic_no_photo_vector)
 
                         }}
-                    2 -> { binding.included.bottomSheetDescriptionHeader.text = podData.serverResponse.title
+                    1 -> {
+                        viewModel.sendRequest(-1)
+                        binding.included.bottomSheetDescriptionHeader.text = podData.serverResponse.title
                         binding.included.bottomSheetDescription.text = podData.serverResponse.explanation
 
                         binding.imageView.load(podData.serverResponse.url) {
                             placeholder(R.drawable.ic_no_photo_vector)
 
                         }}
-                    3 -> {binding.included.bottomSheetDescriptionHeader.text = podData.serverResponse.title
-                        binding.included.bottomSheetDescription.text = podData.serverResponse.explanation
 
-                        binding.imageView.load(podData.serverResponse.url) {
-                            placeholder(R.drawable.ic_no_photo_vector)
-
-                        }}
                 }
 
             }
