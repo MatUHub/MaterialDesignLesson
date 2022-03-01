@@ -28,15 +28,17 @@
         android:layout_height="wrap_content"
         android:includeFontPadding="true"
         android:layout_margin="5dp"
-        android:text="Theme 1" />
+        android:textSize="11sp"
+        android:text="Theme blue" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/themeButton2"
         android:layout_weight="1"
+        android:textSize="11sp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="Theme 2" />
+        android:text="Theme orange" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/themeButton3"
@@ -44,7 +46,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="Theme 3" />
+        android:textSize="11sp"
+        android:text="Theme green" />
 </LinearLayout>
 
 

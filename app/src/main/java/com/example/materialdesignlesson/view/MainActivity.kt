@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 import com.example.materialdesignlesson.R
 import com.example.materialdesignlesson.databinding.ActivityMainBinding
 import com.example.materialdesignlesson.view.chips.SettingsFragment
+import com.example.materialdesignlesson.view.main.EarthFragment
+import com.example.materialdesignlesson.view.main.FavouritFragment
+import com.example.materialdesignlesson.view.main.MarsFragment
 import com.example.materialdesignlesson.view.main.PODFragment
 import com.example.materialdesignlesson.view.viewpager.ViewPagerFragment
 import com.example.materialdesignlesson.viewmodel.ShearedSettings
@@ -31,12 +34,15 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.bottomViewEarth -> {
+                    navigateTo(EarthFragment())
                     true
                 }
                 R.id.bottomViewMars -> {
+                    navigateTo(MarsFragment())
                     true
                 }
                 R.id.bottomViewFavorite -> {
+                    navigateTo(FavouritFragment())
                     true
                 }
                 R.id.bottomViewSettings -> {
