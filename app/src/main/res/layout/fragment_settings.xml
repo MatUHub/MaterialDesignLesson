@@ -22,6 +22,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="1" />
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="themeButton1, themeButton2, themeButton3"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier1"
@@ -73,6 +85,27 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/themeButton2"
         tools:layout_editor_absoluteY="186dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textVisibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/aldrich"
+        android:text="Изменение видимости кнопок"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/themeButton2" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:text="ON"
+        android:id="@+id/buttonVisibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.284"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textVisibility" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

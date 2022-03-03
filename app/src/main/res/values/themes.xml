@@ -64,7 +64,7 @@
         <item name="chipStyle">@style/myChipStyle</item>
         <item name="backgroundTint">?color_200</item>
         <item name="tabStyle">@style/myTabStyle</item>
-        <item name="materialButtonStyle">@style/myButtonStyle</item>
+
         <item name="bottomSheetStyle">@style/mySheetStyle</item>
         <item name="bottomNavigationStyle">?color_600</item>
 
@@ -83,10 +83,6 @@
         <item name="backgroundTint">?color_200</item>
     </style>
 
-    <style name="myButtonStyle" parent="Widget.MaterialComponents.Button">
 
-        <item name="fontFamily">@font/anton_regular</item>
-        <item name="backgroundTint">?color_200</item>
-    </style>
 
 </resources>
