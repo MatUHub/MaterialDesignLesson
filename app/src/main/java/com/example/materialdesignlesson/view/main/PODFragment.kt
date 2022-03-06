@@ -3,8 +3,11 @@ package com.example.materialdesignlesson.view.main
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.transition.ChangeBounds
+import android.transition.TransitionManager
 import android.util.Log
 import android.view.*
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
@@ -19,11 +22,11 @@ import com.example.materialdesignlesson.viewmodel.PODViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 
-class PODFragment (): BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
+class PODFragment() : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
 
     private var dataPOD: Int = 1
 
-    constructor(version : Int): this(){
+    constructor(version: Int) : this() {
         dataPOD = version
     }
 
@@ -76,15 +79,29 @@ class PODFragment (): BaseFragment<FragmentMainBinding>(FragmentMainBinding::inf
         //связка ActionBar Activity с bottomAppBar
         setHasOptionsMenu(true)
 
-        binding.fab.setOnClickListener{
-           if(isMain){
-               bottomSheetBehavior.state=BottomSheetBehavior.STATE_EXPANDED
-           } else {
-               bottomSheetBehavior.state=BottomSheetBehavior.STATE_COLLAPSED
-           }
+        binding.fab.setOnClickListener {
+            if (isMain) {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            } else {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
             isMain = !isMain
         }
+
+        var flag = false
+
+        binding.imageView.setOnClickListener {
+            flag = !flag
+
+            if (flag) {
+                binding.imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+            } else {
+                binding.imageView.scaleType = ImageView.ScaleType.CENTER_INSIDE
+            }
+
+        }
     }
+
     var isMain = true
 
     private fun renderData(podData: PODData) {
@@ -96,24 +113,30 @@ class PODFragment (): BaseFragment<FragmentMainBinding>(FragmentMainBinding::inf
                 myToast("Загрузка данных")
             }
             is PODData.Success -> {
-                when(dataPOD){
+                when (dataPOD) {
                     0 -> {  //добавление заголовка и описания картинки с сайта nasa
-                        binding.included.bottomSheetDescriptionHeader.text = podData.serverResponse.title
-                        binding.included.bottomSheetDescription.text = podData.serverResponse.explanation
+                        binding.included.bottomSheetDescriptionHeader.text =
+                            podData.serverResponse.title
+                        binding.included.bottomSheetDescription.text =
+                            podData.serverResponse.explanation
 
                         binding.imageView.load(podData.serverResponse.url) {
                             placeholder(R.drawable.ic_no_photo_vector)
 
-                        }}
+                        }
+                    }
                     1 -> {
                         viewModel.sendRequest(-1)
-                        binding.included.bottomSheetDescriptionHeader.text = podData.serverResponse.title
-                        binding.included.bottomSheetDescription.text = podData.serverResponse.explanation
+                        binding.included.bottomSheetDescriptionHeader.text =
+                            podData.serverResponse.title
+                        binding.included.bottomSheetDescription.text =
+                            podData.serverResponse.explanation
 
                         binding.imageView.load(podData.serverResponse.url) {
                             placeholder(R.drawable.ic_no_photo_vector)
 
-                        }}
+                        }
+                    }
 
                 }
 
@@ -134,7 +157,9 @@ class PODFragment (): BaseFragment<FragmentMainBinding>(FragmentMainBinding::inf
                 myToast("нажатие кнопки app_bar_fav")
             }
             R.id.app_bar_settings -> {
-                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.mainContainer, SettingsFragment.newInstance()).addToBackStack("").commit()
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.mainContainer, SettingsFragment.newInstance()).addToBackStack("")
+                    .commit()
             }
             //для поиска кнопки бургер используется android.R.id.home
             android.R.id.home -> {
