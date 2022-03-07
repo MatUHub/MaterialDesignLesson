@@ -3,16 +3,16 @@ package com.example.materialdesignlesson.view.chips
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
+import androidx.transition.*
+import android.view.Gravity
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.Toast
 import com.example.materialdesignlesson.R
 import com.example.materialdesignlesson.databinding.FragmentSettingsBinding
 import com.example.materialdesignlesson.view.BaseFragment
 import com.example.materialdesignlesson.viewmodel.ShearedSettings
-import com.google.android.material.chip.Chip
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
+
 
 class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsBinding::inflate) {
 
@@ -61,6 +61,8 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
             }
 
         }
+
+
     }
 
     private fun myToast(text: String) {

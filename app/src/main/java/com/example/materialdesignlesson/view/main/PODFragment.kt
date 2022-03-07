@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.transition.ChangeBounds
+import android.transition.ChangeImageTransform
 import android.transition.TransitionManager
 import android.util.Log
 import android.view.*
@@ -93,11 +94,16 @@ class PODFragment() : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inf
         binding.imageView.setOnClickListener {
             flag = !flag
 
+
+            val changeImageTransform = ChangeImageTransform()
+            changeImageTransform.duration = 3000
+            TransitionManager.beginDelayedTransition(binding.transitionsContainer, changeImageTransform)
             if (flag) {
                 binding.imageView.scaleType = ImageView.ScaleType.CENTER_CROP
             } else {
                 binding.imageView.scaleType = ImageView.ScaleType.CENTER_INSIDE
             }
+
 
         }
     }

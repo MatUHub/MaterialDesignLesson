@@ -44,6 +44,14 @@
     app:layout_constraintEnd_toStartOf="@+id/guideline4"
     app:layout_constraintStart_toStartOf="@+id/guideline4"
     app:layout_constraintTop_toTopOf="@+id/guideline1"/>
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/settingsFrame"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_editor_absoluteY="667dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </ConstraintSet>
 
