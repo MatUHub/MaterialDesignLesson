@@ -1,42 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
+
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/picEarth"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:src="@drawable/pic_earth"
         android:layout_weight="1"
-        />
+        android:src="@drawable/pic_earth" />
+
     <FrameLayout
         android:id="@+id/frameEarth"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        >
+        android:layout_weight="1">
+
         <androidx.appcompat.widget.AppCompatButton
-            android:text="start"
-            android:layout_gravity="top|start"
             android:id="@+id/buttonAnimation"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:text="start" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:text="animation"
-            android:layout_gravity="top|end"
             android:id="@+id/buttonAnimation1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:text="animation" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:text="animation"
-            android:layout_gravity="top|center"
             android:id="@+id/buttonAnimation2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:text="animation" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
 
+        <ImageView
+            android:elevation="10dp"
+            android:id="@+id/iconPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_plus_fab" />
+
+        <LinearLayout
+            android:id="@+id/containerOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="TextOne"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/black"
+                android:src="@drawable/ic_earth" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="TextTwo"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/black"
+                android:src="@drawable/ic_mars" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerThree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="TextThree"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/black"
+                android:src="@drawable/ic_mars" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerFour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="TextFour"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/black"
+                android:src="@drawable/ic_mars" />
+
+        </LinearLayout>
     </FrameLayout>
 </LinearLayout>
