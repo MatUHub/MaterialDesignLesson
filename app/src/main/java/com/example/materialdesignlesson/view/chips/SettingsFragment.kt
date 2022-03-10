@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.example.materialdesignlesson.R
 import com.example.materialdesignlesson.databinding.FragmentSettingsBinding
 import com.example.materialdesignlesson.view.BaseFragment
+import com.example.materialdesignlesson.view.RecyclerFragment
 import com.example.materialdesignlesson.viewmodel.ShearedSettings
 
 
@@ -59,6 +60,15 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
                 }
 
             }
+
+
+
+        }
+
+        binding.buttonRecycle.setOnClickListener{
+            requireActivity().supportFragmentManager.beginTransaction().
+            replace(R.id.mainContainer, RecyclerFragment.newInstance()).addToBackStack("")
+                .commit()
 
         }
 
