@@ -13,6 +13,7 @@ import com.example.materialdesignlesson.view.viewpager.ItemTouchHelperViewAdapte
 class RecyclerFragment : BaseFragment<FragmentRecyclerBinding>(FragmentRecyclerBinding::inflate) {
 
     lateinit var adapter: RecyclerAdapter
+    lateinit var itemTouchHelper: ItemTouchHelper
 
     val data = arrayListOf(
         Pair(ITEM_CLOSE, DataRecycle("Header", type = TYPE_HEADER)),
@@ -26,8 +27,6 @@ class RecyclerFragment : BaseFragment<FragmentRecyclerBinding>(FragmentRecyclerB
     )
 
 
-
-
     companion object {
         //@JvmStatic указывает о статическом поле, без учета companion object
         @JvmStatic
@@ -39,16 +38,19 @@ class RecyclerFragment : BaseFragment<FragmentRecyclerBinding>(FragmentRecyclerB
 
 
 
-       adapter = RecyclerAdapter({
+        adapter = RecyclerAdapter({
             Toast.makeText(
                 requireContext(),
                 it.someText,
                 Toast.LENGTH_SHORT
             ).show()
-        }, data)
+        }, data, {
+            itemTouchHelper.startDrag(it)
+        })
 
         binding.recyclerView.adapter = adapter
-
+        itemTouchHelper = ItemTouchHelper(ItemTouchHelperCallback(adapter))
+        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
         binding.recyclerFAB.setOnClickListener {
             adapter.addItem()
             binding.recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
@@ -57,15 +59,16 @@ class RecyclerFragment : BaseFragment<FragmentRecyclerBinding>(FragmentRecyclerB
         ItemTouchHelper(ItemTouchHelperCallback(adapter)).attachToRecyclerView(binding.recyclerView)
     }
 
-  inner  class ItemTouchHelperCallback(private val adapter: RecyclerAdapter): ItemTouchHelper.Callback(){
+    inner class ItemTouchHelperCallback(private val adapter: RecyclerAdapter) :
+        ItemTouchHelper.Callback() {
 
-      override fun isLongPressDragEnabled(): Boolean {
-          return true
-      }
+        override fun isLongPressDragEnabled(): Boolean {
+            return true
+        }
 
-      override fun isItemViewSwipeEnabled(): Boolean {
-          return super.isItemViewSwipeEnabled()
-      }
+        override fun isItemViewSwipeEnabled(): Boolean {
+            return super.isItemViewSwipeEnabled()
+        }
 
         override fun getMovementFlags(
             recyclerView: RecyclerView,
@@ -81,7 +84,7 @@ class RecyclerFragment : BaseFragment<FragmentRecyclerBinding>(FragmentRecyclerB
             viewHolder: RecyclerView.ViewHolder,
             target: RecyclerView.ViewHolder
         ): Boolean {
-adapter.onItemMove(viewHolder.adapterPosition, target.adapterPosition)
+            adapter.onItemMove(viewHolder.adapterPosition, target.adapterPosition)
             return true
         }
 
@@ -89,16 +92,16 @@ adapter.onItemMove(viewHolder.adapterPosition, target.adapterPosition)
             adapter.onItemDismiss(viewHolder.adapterPosition)
         }
 
-      override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
-          if(viewHolder !is RecyclerAdapter.MarsViewHolder){
-              return  super.onSelectedChanged(viewHolder, actionState)
-          }
-      }
+        override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
+            if (viewHolder !is RecyclerAdapter.MarsViewHolder) {
+                return super.onSelectedChanged(viewHolder, actionState)
+            }
+        }
 
-      override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
-          if(viewHolder !is RecyclerAdapter.MarsViewHolder){
-              return super.clearView(recyclerView, viewHolder)
-          }
-      }
+        override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+            if (viewHolder !is RecyclerAdapter.MarsViewHolder) {
+                return super.clearView(recyclerView, viewHolder)
+            }
+        }
     }
 }

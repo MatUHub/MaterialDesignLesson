@@ -3,18 +3,23 @@ package com.example.materialdesignlesson.view
 import android.graphics.Color
 import android.provider.ContactsContract
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MotionEventCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.materialdesignlesson.databinding.RecyclerItemEarthBinding
 import com.example.materialdesignlesson.databinding.RecyclerItemHeaderBinding
 import com.example.materialdesignlesson.databinding.RecyclerItemMarsBinding
 import com.example.materialdesignlesson.repository.*
 import com.example.materialdesignlesson.view.viewpager.ItemTouchHelperAdapter
+import com.example.materialdesignlesson.view.viewpager.ItemTouchHelperViewAdapter
+import com.example.materialdesignlesson.view.viewpager.OnStartDragListener
 
 class RecyclerAdapter(
     private val onListItemClickListener: OnListItemClickListener,
-    private var dataSet: MutableList<Pair<Int, DataRecycle>>
+    private var dataSet: MutableList<Pair<Int, DataRecycle>>,
+    private val onStartDragListener: OnStartDragListener
 ) : RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>(), ItemTouchHelperAdapter {
 
     override fun getItemViewType(position: Int): Int {
@@ -86,7 +91,7 @@ class RecyclerAdapter(
         }
     }
 
-    inner class MarsViewHolder(view: View) : BaseViewHolder(view), ItemTouchHelperAdapter {
+    inner class MarsViewHolder(view: View) : BaseViewHolder(view), ItemTouchHelperViewAdapter {
         override fun bind(data: Pair<Int, DataRecycle>) {
             RecyclerItemMarsBinding.bind(itemView).apply {
                 marsImageView.setOnClickListener {
@@ -121,6 +126,13 @@ class RecyclerAdapter(
                         notifyItemMoved(layoutPosition, layoutPosition - 1)
                     }
                 }
+
+                dragHandle.setOnTouchListener { view, motionEvent ->
+                    if(MotionEventCompat.getActionMasked(motionEvent) == MotionEvent.ACTION_DOWN){
+                        onStartDragListener.onStartDrag(this@MarsViewHolder)
+                    }
+                    false
+                }
             }
 
         }
@@ -135,13 +147,15 @@ class RecyclerAdapter(
             notifyItemInserted(layoutPosition + 1)
         }
 
-        override fun onItemMove(fromPosition: Int, toPosition: Int) {
-           itemView.setBackgroundColor(Color.GRAY)
+        override fun onItemSelected() {
+            itemView.setBackgroundColor(Color.GREEN)
         }
 
-        override fun onItemDismiss(position: Int) {
+        override fun onItemClear() {
             itemView.setBackgroundColor(0)
         }
+
+
     }
 
     inner class HeaderViewHolder(view: View) : BaseViewHolder(view) {
@@ -155,10 +169,12 @@ class RecyclerAdapter(
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int) {
+        if(toPosition > 0) {
             dataSet.removeAt(fromPosition).apply {
                 dataSet.add(toPosition, this)
             }
             notifyItemMoved(fromPosition, toPosition)
+        }
     }
 
     override fun onItemDismiss(position: Int) {
