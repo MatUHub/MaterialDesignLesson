@@ -87,6 +87,16 @@ class RecyclerAdapter(
                 earthImageView.setOnClickListener {
                     onListItemClickListener.onItemClick(data.second)
                 }
+
+                earthTextView.setOnClickListener{
+                    dataSet[layoutPosition] = dataSet[layoutPosition].let{
+                        val currentSet = if(it.first == ITEM_CLOSE) ITEM_OPEN else ITEM_CLOSE
+                        Pair(currentSet, it.second)
+                    }
+                    notifyItemChanged(layoutPosition)
+                }
+                textEarthItem.visibility = if(data.first == ITEM_CLOSE) View.GONE else View.VISIBLE
+
             }
         }
     }
@@ -109,6 +119,7 @@ class RecyclerAdapter(
 
                 addItemImageView.setOnClickListener { addItemByPosition() }
                 deleteItemImageView.setOnClickListener { deleteItem() }
+
                 moveItemDown.setOnClickListener {
                     if (layoutPosition <= dataSet.size) {
                         dataSet.removeAt(layoutPosition).apply {

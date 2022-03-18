@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -14,6 +15,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/earthTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Земля"
@@ -24,30 +26,70 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/wikiImageView"
+        android:id="@+id/addItemImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:src="@drawable/ic_wikipedia"
+        android:layout_margin="20dp"
+        android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/desTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Дополнительный текст"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@id/earthImageView"
-        app:layout_constraintStart_toEndOf="@id/earthImageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_plus_fab" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="end"
-        app:constraint_referenced_ids="wikiImageView" />
+        tools:layout_editor_absoluteX="397dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/deleteItemImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/earthImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_archive" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/moveItemUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="@+id/addItemImageView"
+        app:layout_constraintTop_toTopOf="@+id/addItemImageView"
+        app:srcCompat="@drawable/ic_arrow_up" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/moveItemDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="@+id/deleteItemImageView"
+        app:layout_constraintTop_toTopOf="@+id/deleteItemImageView"
+        app:srcCompat="@drawable/ic_arrow_down" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/dragHandle"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/earthImageView"
+        app:srcCompat="@drawable/ic_hamburger_menu_bottom_bar"
+        app:layout_constraintEnd_toStartOf="@+id/moveItemDown"
+        app:layout_constraintTop_toBottomOf="@+id/moveItemUp"
+        android:background="@color/black"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textEarthItem"
+        android:text="Земля́ — третья по удалённости от Солнца планета Солнечной системы. Самая плотная, пятая по диаметру и массе среди всех планет и крупнейшая среди планет земной группы, в которую входят также Меркурий, Венера и Марс. Единственное известное человеку в настоящее время тело во Вселенной, населённое живыми организмами.
+
+В публицистике и научно-популярной литературе могут использоваться синонимические термины — мир, голубая планета[16][17][18], Терра (от лат. Terra)."
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/earthImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"/>
 
     <View
         android:layout_width="match_parent"
