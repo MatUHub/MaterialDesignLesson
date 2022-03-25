@@ -1,11 +1,16 @@
 package com.example.materialdesignlesson.view.main
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.text.style.ImageSpan
+import android.text.style.LineBackgroundSpan
+import android.text.style.QuoteSpan
 import android.transition.ChangeBounds
 import android.transition.ChangeImageTransform
 import android.transition.TransitionManager
@@ -14,6 +19,7 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
@@ -113,6 +119,7 @@ class PODFragment() : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inf
 
     var isMain = true
 
+    @SuppressLint("ResourceAsColor")
     private fun renderData(podData: PODData) {
         when (podData) {
             is PODData.Error -> {
@@ -143,6 +150,8 @@ class PODFragment() : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inf
                                 )
                             }
                         }
+
+                       spannableMutable.setSpan(ForegroundColorSpan(R.color.red), 0,spannableMutable.length/3,0)
 
                         binding.included.bottomSheetDescription.text = spannableMutable
 
