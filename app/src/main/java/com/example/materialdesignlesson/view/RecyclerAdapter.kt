@@ -70,11 +70,12 @@ class RecyclerAdapter(
     }
 
     fun addItem() {
-        dataSet.add(generateNewItem())
+        dataSet.add(generateNewMarsItem())
         notifyItemInserted(itemCount - 1)
     }
 
-    private fun generateNewItem() = Pair(ITEM_CLOSE, DataRecycle("new Mars", type = TYPE_MARS))
+    private fun generateNewMarsItem() = Pair(ITEM_CLOSE, DataRecycle("new Mars", type = TYPE_MARS))
+    private fun generateNewEarthItem() = Pair(ITEM_CLOSE, DataRecycle("new Earth", type = TYPE_EARTH))
 
     abstract class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         abstract fun bind(data: Pair<Int, DataRecycle>)
@@ -97,9 +98,39 @@ class RecyclerAdapter(
                 }
                 textEarthItem.visibility = if(data.first == ITEM_CLOSE) View.GONE else View.VISIBLE
 
+                addItemImageView.setOnClickListener{
+                    dataSet.add(layoutPosition + 1, generateNewEarthItem())
+                    notifyItemInserted(layoutPosition + 1)
+                }
+
+                deleteItemImageView.setOnClickListener{
+                    dataSet.removeAt(layoutPosition)
+                    notifyItemRemoved(layoutPosition)
+                }
+
+                moveItemDown.setOnClickListener {
+                    if (layoutPosition <= dataSet.size) {
+                        dataSet.removeAt(layoutPosition).apply {
+                            dataSet.add(layoutPosition + 1, this)
+                        }
+                        notifyItemMoved(layoutPosition, layoutPosition + 1)
+                    }
+                }
+
+                moveItemUp.setOnClickListener {
+
+                    if (layoutPosition > 1) {
+                        dataSet.removeAt(layoutPosition).apply {
+                            dataSet.add(layoutPosition - 1, this)
+                        }
+                        notifyItemMoved(layoutPosition, layoutPosition - 1)
+                    }
+                }
+
             }
         }
     }
+
 
     inner class MarsViewHolder(view: View) : BaseViewHolder(view), ItemTouchHelperViewAdapter {
         override fun bind(data: Pair<Int, DataRecycle>) {
@@ -153,8 +184,8 @@ class RecyclerAdapter(
             notifyItemRemoved(layoutPosition)
         }
 
-        private fun addItemByPosition() {
-            dataSet.add(layoutPosition + 1, generateNewItem())
+         fun addItemByPosition() {
+            dataSet.add(layoutPosition + 1, generateNewMarsItem())
             notifyItemInserted(layoutPosition + 1)
         }
 
