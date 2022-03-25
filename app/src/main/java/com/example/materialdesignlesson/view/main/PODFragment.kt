@@ -3,6 +3,9 @@ package com.example.materialdesignlesson.view.main
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ImageSpan
 import android.transition.ChangeBounds
 import android.transition.ChangeImageTransform
 import android.transition.TransitionManager
@@ -121,13 +124,31 @@ class PODFragment() : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inf
             is PODData.Success -> {
                 when (dataPOD) {
                     0 -> {  //добавление заголовка и описания картинки с сайта nasa
+
+
                         binding.included.bottomSheetDescriptionHeader.text =
                             podData.serverResponse.title
                         binding.included.bottomSheetDescription.text =
                             podData.serverResponse.explanation
 
+                        val spannableMutable = SpannableStringBuilder(binding.included.bottomSheetDescription.text)
+
+                        for(i in spannableMutable.indices){
+                            if(spannableMutable[i] == 'i') {
+                                spannableMutable.setSpan(
+                                    ImageSpan(
+                                        requireContext(),
+                                        R.drawable.ic_info
+                                    ), i, i+1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+                                )
+                            }
+                        }
+
+                        binding.included.bottomSheetDescription.text = spannableMutable
+
                         binding.imageView.load(podData.serverResponse.url) {
                             placeholder(R.drawable.ic_no_photo_vector)
+
 
                         }
                     }
