@@ -2,6 +2,7 @@ package com.example.materialdesignlesson.view.main
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -151,7 +152,11 @@ class PODFragment() : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inf
                             }
                         }
 
-                       spannableMutable.setSpan(ForegroundColorSpan(R.color.red), 0,spannableMutable.length/3,0)
+
+
+                        spannableMutable.setSpan(ForegroundColorSpan(Color.RED), 0, spannableMutable.length/3, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+                        spannableMutable.setSpan(ForegroundColorSpan(Color.GREEN), spannableMutable.length/3, spannableMutable.length * 2/3, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+                        spannableMutable.setSpan(ForegroundColorSpan(Color.YELLOW), spannableMutable.length * 2/3,spannableMutable.length - 1 , Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
 
                         binding.included.bottomSheetDescription.text = spannableMutable
 

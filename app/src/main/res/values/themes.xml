@@ -60,7 +60,7 @@
         <item name="colorTertiaryContainer">?color_100</item>
         <item name="colorOnTertiaryContainer">?color_900</item>
         <item name="android:statusBarColor">?myColor</item>
-        <item name="colorSurface">?myColor</item>
+
         <item name="chipStyle">@style/myChipStyle</item>
         <item name="backgroundTint">?color_200</item>
         <item name="tabStyle">@style/myTabStyle</item>
